@@ -1,4 +1,11 @@
 import {createApp} from 'vue'
+import "@/assets/assets.css"
 import App from './App.vue'
+import { appAxios } from "@/utils/appAxios";
 
-createApp(App).mount('#app')
+
+
+
+const app = createApp(App)
+app.provide("appAxios", appAxios);
+app.mount('#app')
