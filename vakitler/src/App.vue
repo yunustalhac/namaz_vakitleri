@@ -2,21 +2,24 @@
 <template>
   <input @keydown.enter="post" type="text" v-model="title">
 
-  <div class="container">
+  <div class="select-none  p-5 m-auto">
     <div class="text-right mr-5 mt-3 text-3xl">{{ clock }}</div>
-    <div class="mt-10">
-      <select class="appearance-none text-3xl outline-0 border-b rounded-2xl border-rose-400 text-center flex m-auto active:border-gray-500 mb-5">
+    <div class="mt-10 flex flex-col">
+      <select class="appearance-none text-3xl outline-0 text-center flex m-auto active:border-gray-500 mb-5">
         <option class="" v-for="item in cities" :key="item.id">{{ item.name }}</option>
       </select>
       <div class="grid grid-cols-3 gap-5 ml-3 mr-3">
-        <div v-for="i in 6" :key="i" class="active:bg-red-600 flex rounded-xl h-40 bg-gray-300">
-          <div class="flex ml-5 mr-5 gap-[120%]">
-            <h3 class="flex text-4xl items-center">sabah</h3>
-            <p class="flex items-center text-3xl">3:27</p>
+        <div v-for="i in 6" :key="i" class="flex items-center rounded-xl h-40 bg-gray-300">
+          <div class="flex justify-center w-full">
+            <div class="flex items-center w-full justify-around">
+              <h3 class=" text-4xl">sabah</h3>
+              <p class="text-3xl">3:27</p>
+            </div>
           </div>
         </div>
       </div>
-      <div class="flex w-full bg-sky-300 mt-5 justify-center items-center gap-[30%]">
+      <div
+          class="flex w-full bg-gradient-to-r from-sky-500 to-cyan-500 rounded-3xl mt-5  justify-center justify-around items-center">
         <h2 class="text-5xl">sabah</h2>
         <img src="@/assets/hayrat.png" alt="logo">
         <h2 class="text-5xl">0:30</h2>
@@ -50,7 +53,7 @@ setInterval(() => {
   updateClock();
 }, 1500);
 
-appAxios.get("/city").then(response_city => {
+appAxios.get("http://localhost:3000/city").then(response_city => {
   console.log(response_city)
   cities.value = response_city.data || []
 })
